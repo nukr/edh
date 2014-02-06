@@ -9,7 +9,8 @@
     "express": "3.4.7",
     "jade": "*",
     "hipchatter": "~0.1.1",
-    "node-hipchat": "~0.2.0"
+    "node-hipchat": "~0.2.0",
+    "xlsx": "~0.5.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
