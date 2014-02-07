@@ -9,7 +9,16 @@ module.exports = (grunt) ->
                     logConcurrentOutput: true
         nodemon:
             dev:
-                script: 'app.js'
+                options:
+                    file: 'app.js'
+                    args: []
+                    ignoredFiles: ['public/**']
+                    watchedExtensions: ['js']
+                    nodeArgs: ['--debug']
+                    delayTime: 1
+                    env:
+                        PORT: 4000
+                    cwd: __dirname
         compass:
             dist:
                 options:
