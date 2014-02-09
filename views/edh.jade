@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    div.container
+    div.container(ng-controller="EdhCtrl")
         table.table.table-hover
             h2 本表由巴哈姆特的Shilen、PTT的Cycefa(同一人)整理
             tr
@@ -14,14 +14,13 @@ block content
                 th 功能
                 th 分數
                 th 個人評價
-            each row in edh['主頁']
-                tr
-                    td= row['分類']
-                    td= row['顏色']
-                    td: a(mtglink, href="#{row['連結']}") #{row['Card Name']}
-                    td: a(mtglink, href="#{row['連結']}") #{row['卡片名稱']}
-                    td= row['費用']
-                    td= row['類別1']
-                    td= row['功能']
-                    td= row['分數']
-                    td= row['個人評價']
+            tr(ng-repeat="row in edh")
+                td {{ row['分類'] }}
+                td {{ row['顏色'] }}
+                td: a(mtglink, href="{{row['連結']}}") {{row['Card Name']}}
+                td: a(mtglink, href="{{row['連結']}}") {{row['卡片名稱']}}
+                td {{row['費用']}}
+                td {{row['類別1']}}
+                td {{row['功能']}}
+                td {{row['分數']}}
+                td {{row['個人評價']}}

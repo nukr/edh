@@ -1,5 +1,5 @@
 (function() {
-  var Hipchatter, XLSX, edh, hipchat_conf, hipchatter, index, sendRepair, sendTextRepair, signin, workbookToJson, xlsx;
+  var Hipchatter, XLSX, hipchat_conf, hipchatter, workbookToJson, xlsx;
 
   XLSX = require("xlsx");
 
@@ -24,19 +24,19 @@
 
   hipchatter = new Hipchatter(hipchat_conf.config.token.personal);
 
-  index = function(req, res) {
+  exports.index = function(req, res) {
     return res.render('index', {
       title: 'Express'
     });
   };
 
-  signin = function(req, res) {
+  exports.signin = function(req, res) {
     return res.render('signin', {
       title: 'Signin'
     });
   };
 
-  edh = function(req, res) {
+  exports.edh = function(req, res) {
     var edhJson;
     edhJson = workbookToJson(xlsx);
     return res.render('edh', {
@@ -45,7 +45,13 @@
     });
   };
 
-  sendRepair = function(req, res) {
+  exports.edhJson = function(req, res) {
+    var edhJson;
+    edhJson = workbookToJson(xlsx);
+    return res.json(edhJson);
+  };
+
+  exports.sendRepair = function(req, res) {
     return hipchatter.notify("Evolution", {
       message: "        >>>維修單（測試）<<<<br />        客戶：劉文凱<br />        電話：3345678<br />        地址：<a href='https://www.google.com.tw/maps/preview/place/973%E8%8A%B1%E8%93%AE%E7%B8%A3%E5%90%89%E5%AE%89%E9%84%89%E5%BB%BA%E5%9C%8B%E8%B7%AF%E4%BA%8C%E6%AE%B5155%E8%99%9F/@23.991751,121.578032,17z/data=!3m1!4b1!4m2!3m1!1s0x34689f08c14b2093:0xe0a86afbe99f9904'>花蓮縣吉安鄉建國路二段155號</a><br />        委派：@JayWang <br />        送單：@LoWei <br />        ",
       color: "green",
@@ -57,7 +63,7 @@
     });
   };
 
-  sendTextRepair = function(req, res) {
+  exports.sendTextRepair = function(req, res) {
     return hipchatter.notify("Evolution", {
       message: "@LoWei",
       color: "green",
@@ -69,15 +75,5 @@
       }
     });
   };
-
-  exports.index = index;
-
-  exports.signin = signin;
-
-  exports.sendRepair = sendRepair;
-
-  exports.sendTextRepair = sendTextRepair;
-
-  exports.edh = edh;
 
 }).call(this);

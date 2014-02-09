@@ -1,6 +1,8 @@
 app = angular.module 'myApp', ["ngRoute"]
 
+#parse magiccards.info links to image
 app.directive "mtglink", ->
+
     link: (scope, element, attrs)->
         element.bind "mouseenter", ->
             pathname = element[0].pathname
@@ -21,17 +23,11 @@ app.directive "mtglink", ->
         element.bind "mouseleave", ->
             scope.img.remove()
 
-app.controller "RepairCtrl", ($scope, $q, $timeout)->
+app.controller "EdhCtrl", ($scope, $http)->
 
-    defer = $q.defer()
+    $http.get("/edh/json")
+    .success (data)->
+        $scope.edh = data['主頁']
 
-    defer.promise
-        .then (weapon)->
-            return "bow"
 
-        .then (weapon)->
-            return "gun"
 
-        .then (weapon)->
-
-    defer.resolve("sword")

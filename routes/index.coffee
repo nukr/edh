@@ -1,33 +1,35 @@
 XLSX = require "xlsx"
 xlsx = XLSX.readFile "public/misc/EDH.xlsx"
 
+# parse xlsx from file to json
 workbookToJson = (workbook)->
 
-
     result = {}
-
     workbook.SheetNames.forEach (sheetName)->
         roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName])
         result[sheetName] = roa if roa.length > 0
-
     result
-
 
 hipchat_conf = require "../config/hipchat"
 Hipchatter = require "hipchatter"
 hipchatter = new Hipchatter(hipchat_conf.config.token.personal)
 
-index = (req, res)->
+exports.index = (req, res)->
     res.render 'index', { title: 'Express'}
 
-signin = (req, res)->
+exports.signin = (req, res)->
     res.render 'signin', { title: 'Signin'}
 
-edh = (req, res)->
+exports.edh = (req, res)->
     edhJson = workbookToJson(xlsx)
     res.render 'edh', {title: 'EDH', edh: edhJson}
 
-sendRepair = (req, res)->
+exports.edhJson = (req, res)->
+    edhJson = workbookToJson(xlsx)
+    res.json edhJson
+
+
+exports.sendRepair = (req, res)->
     hipchatter.notify "Evolution",
         message: "
         >>>維修單（測試）<<<<br />
@@ -42,7 +44,7 @@ sendRepair = (req, res)->
         , (err, err_response)->
             console.log "success" if err is null
 
-sendTextRepair = (req, res)->
+exports.sendTextRepair = (req, res)->
     hipchatter.notify "Evolution",
         message: "@LoWei"
         color: "green"
@@ -51,9 +53,3 @@ sendTextRepair = (req, res)->
         , (err, err_response)->
             console.log "success" if err is null
 
-
-exports.index = index
-exports.signin = signin
-exports.sendRepair = sendRepair
-exports.sendTextRepair = sendTextRepair
-exports.edh = edh

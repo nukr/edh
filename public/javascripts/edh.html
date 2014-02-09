@@ -1,0 +1,27 @@
+<div class="container">
+    <table class="table table-hover">
+        <h2>本表由巴哈姆特的Shilen、PTT的Cycefa(同一人)整理</h2>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="row in edh">
+                <td>{{ row['分類'] }}</td>
+                <td>{{ row['顏色'] }}</td>
+                <td><a mtglink href="{{row['連結']}}">{{row['Card Name']}}</a></td>
+                <td><a mtglink href="{{row['連結']}}">{{row['卡片名稱']}}</a></td>
+                <td>{{row['費用']}}</td>
+                <td>{{row['類別1']}}</td>
+                <td>{{row['功能']}}</td>
+                <td>{{row['分數']}}</td>
+                <td>{{row['個人評價']}}</td>
+            </tr>
+    </table>
+</div>

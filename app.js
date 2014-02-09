@@ -36,6 +36,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/signin', routes.signin);
 app.get('/edh', routes.edh);
+app.get('/edh/json', routes.edhJson)
 app.get('/repair/send', routes.sendRepair);
 app.get('/repair/send/text', routes.sendTextRepair);
 app.post('/customer/add', customer.add);

@@ -31,15 +31,10 @@
     };
   });
 
-  app.controller("RepairCtrl", function($scope, $q, $timeout) {
-    var defer;
-    defer = $q.defer();
-    defer.promise.then(function(weapon) {
-      return "bow";
-    }).then(function(weapon) {
-      return "gun";
-    }).then(function(weapon) {});
-    return defer.resolve("sword");
+  app.controller("EdhCtrl", function($scope, $http) {
+    return $http.get("/edh/json").success(function(data) {
+      return $scope.edh = data['主頁'];
+    });
   });
 
 }).call(this);
