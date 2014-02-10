@@ -33,7 +33,19 @@
 
   app.controller("EdhCtrl", function($scope, $http) {
     return $http.get("/edh/json").success(function(data) {
-      return $scope.edh = data['主頁'];
+      var row, _i, _len, _ref, _results;
+      $scope.edh = data['主頁'];
+      _ref = $scope.edh;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        row = _ref[_i];
+        if (row['攻擊']) {
+          _results.push(row['攻防'] = "" + row['攻擊'] + "/" + row['攻擊']);
+        } else {
+          _results.push(row['攻防'] = '');
+        }
+      }
+      return _results;
     });
   });
 
