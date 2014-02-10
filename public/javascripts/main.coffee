@@ -28,6 +28,3 @@ app.controller "EdhCtrl", ($scope, $http)->
     $http.get("/edh/json")
     .success (data)->
         $scope.edh = data['主頁']
-
-
-

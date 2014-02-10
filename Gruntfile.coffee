@@ -3,7 +3,7 @@ module.exports = (grunt) ->
     grunt.initConfig
         pkg: grunt.file.readJSON('package.json')
         watch:
-            html:
+            jade:
                 files: ['public/views/**']
                 options:
                     livereload: true
