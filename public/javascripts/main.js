@@ -40,7 +40,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         row = _ref[_i];
         if (row['攻擊']) {
-          _results.push(row['攻防'] = "" + row['攻擊'] + "/" + row['攻擊']);
+          _results.push(row['攻防'] = "" + row['攻擊'] + "/" + row['防禦']);
         } else {
           _results.push(row['攻防'] = '');
         }

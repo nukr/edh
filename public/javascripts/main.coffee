@@ -30,6 +30,6 @@ app.controller "EdhCtrl", ($scope, $http)->
         $scope.edh = data['主頁']
         for row in $scope.edh
             if row['攻擊']
-                row['攻防'] = "#{row['攻擊']}/#{row['攻擊']}"
+                row['攻防'] = "#{row['攻擊']}/#{row['防禦']}"
             else
                 row['攻防'] = ''
